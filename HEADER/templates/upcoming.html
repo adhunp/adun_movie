@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+{% block name %}{{admin.username}}{% endblock %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+	<div class="col">
+		<div class="card h-100">
+			<img class="card-img-top" src="/static/images/up/adipurush.jpg"alt="">
+			<div class="card-body">
+				<h5 class="card-title">Adipurush</h5>
+				<p class="card-text">Adipurush is an upcoming Indian epic mythological film based on Ramayana.
+					The film is written and directed by Om Raut.The film stars Prabhas, Kriti Sanon, and Saif Ali Khan.</p>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><a href="">Book Now</a></small>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="card h-100">
+			<img class="card-img-top" src="/static/images/up/avatar.jpg"alt="">
+			<div class="card-body">
+				<h5 class="card-title">Avatar: The Way of Water</h5>
+				<p class="card-text">Avatar: The Way of Water is an upcoming American
+					 epic science fiction film directed by James Cameron.
+					 the film members Sam Worthington and Zoe Saldaña and Stephen Lang.<p>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><a href="">Book Now</a></small>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="card h-100">
+			<img class="card-img-top" src="/static/images/up/puss.jpg"alt="">
+			<div class="card-body">
+				<h5 class="card-title">Puss in Boots: The Last Wis</h5>
+				<p class="card-text">Puss in Boots: The Last Wish is an upcoming American computer-animated adventure 
+					comedy film is directed by Joel Crawford and co-directed by Januel Mercado.
+					It stars Antonio Banderas and Salma Hayek, alongside Harvey Guillénand Florence Pugh.
+
+				</p>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><a href="">Book Now</a></small>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

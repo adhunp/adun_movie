@@ -1,0 +1,25 @@
+{% extends 'user_base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+
+{% block name %}{{user.username}}{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="oldpassword">old Password:</label>
+    <input type="password" id="oldpwd" name="oldpsw"><br><br>
+
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPwd" name="newpsw"><br><br>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmpwd" name="confirmpsw"><br><br>
+
+    <button type="submit">change password</button>
+    {{status}}
+</form>
+
+{% endblock %}

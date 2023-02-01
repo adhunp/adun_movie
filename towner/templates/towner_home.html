@@ -1,0 +1,76 @@
+{% extends 'towner_base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+{% block name %}{{customer.tuname}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+  
+      <div class="col-sm">
+  
+            <button><a href="{% url 'towner:addmovies' %}">Add Movies</a></button>  
+      </div>
+  
+      <div class="col-sm">
+  
+        <button><a href="{% url 'towner:time_table' %}">Add details</a></button>  
+      </div>
+  
+      <div class="col-sm">
+  
+            <button class="text-muted"><a href="{% url 'towner:de_movies' %}">Delete Movies</a></button>  
+      </div>
+  
+    </div>
+  
+  
+
+  <div class="row">
+  
+    <div class="col-sm">
+
+          <button><a href="{% url 'towner:screen' %}">Add Screen</a></button>  
+    </div>
+
+
+    <div class="col-sm">
+
+      <button><a href="{% url 'towner:seats_name' %}">Add Seatname</a></button>  
+    </div>
+
+  </div>
+</div>
+
+<style>
+    .row{
+            margin-top: 100px;
+            margin-bottom: 100px;
+    }
+    button{
+        width: 200px;
+        height: 100px;
+        color: rgb(233, 254, 10);
+		font-size: 20px;
+        background-color: rgb(186, 93, 93);
+        border: rgb(186, 93, 93);;
+    }
+		button a {
+			font-family: fantasy;
+			font-size: 20px;
+			text-decoration: none;
+			color: rgb(221, 245, 8);
+
+		}
+
+		button a:hover {
+			background-color: rgb(5, 5, 5);
+            color: rgb(233, 254, 10);
+            text-decoration: none;
+
+		}
+</style>
+{% endblock %}

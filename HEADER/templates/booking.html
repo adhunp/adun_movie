@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+{% block name %}{{admin.username}}{% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+        <h1>{{movie.theater.tname}}</h1>
+        <h2>{{movie.theater.taddress}}</h2>
+        <h2>{{movie.theater.tphone}}</h2>
+    </div>
+    <div>
+        <table class="booking">
+            <tr style="height:80px;">
+                <td><h1>{{movie.movie_name}}</h1></td>
+                <td><a href="{% url 'HEADER:seats' %}">10.15</a></td>
+                <td><a href="">2.00</a></td>
+                <td><a href="">6.00</a></td>
+                <td><a href="">9.45</a></td>        
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

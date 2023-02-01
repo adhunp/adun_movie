@@ -1,0 +1,35 @@
+{% extends 'user_base.html' %}
+{% block title %}
+theaters
+{% endblock%}
+
+{% block name %}{{customer.tuname}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <h1>{{theater.tname}}</h1>
+        <h2>{{theater.taddress}}</h2>
+        <h2>{{theater.tphone}}</h2>
+    </div>
+
+    <div>
+        <h1>{{movie.movie_name}}</h1>
+
+        <table class="booking">
+            {% for time in table %}
+            <tr style="height:80px;">
+
+                <td>{{time.date.datees}}</td>
+                <!-- <td>{{time.theater.tname}}</a></td> -->
+                <td><a href="">{{time.screen.screen_name}}</td>
+                <td><a href="{% url 'towner:seats' time.screen.id time.theater.id %}">{{time.time_one}}</a></td>
+                <td><a href="">{{time.time_two}}</a></td>
+                <td><a href="">{{time.time_three}}</a></td>        
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'user_base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+
+{% block name %}{{user.username}}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <table>
+        <tr>
+            <td colspan="15" colspan="4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="/static/images/on/cart.jpg" class="card-img-top" alt="..." style="height:1500px ;">
+                            <div class="card-body">
+                                <h5 class="card-title">Carter</h5>
+                                <p class="card-text">Carter is a 2022 South Korean action thriller film directed by Jung
+                                    Byung-gil.The film stars Joo Won, Lee Sung-jae, Jeong So-ri and Kim Bo-min.
+                                    <h5 class="card-title">Plot</h5>
+                                    In the midst of a deadly pandemic caused by a virus which makes the infected patients 
+                                    violent and zombie-like, originating from the DMZ that has already devastated the 
+                                    United States and North Korea, a man wakes up in a blood-soaked bed in a motel room 
+                                    in Seoul, with a cross-shaped scar on the back of his head. Armed CIA agents burst 
+                                    in and threaten him demanding the whereabouts of Dr. Jung Byung-ho. With no 
+                                    recollections of his past, he doesn't know who he is or why he is there, let 
+                                    alone who Dr. Jung is. A female voice inside his ear which only he can hear, 
+                                    tells him that his name is Carter and he needs to accept her directions if he 
+                                    wants to live. Following her instructions, he escapes the room and enters a 
+                                    public bath where nearly a hundred gangsters attack and try to kill him. 
+                                    Thanks to his lethal fighting skills, he survives their assault.
+                                </p>
+                                <h5 class="card-title">Theater: Magic Frames Radha</h5>
+                             
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted" ><a href="{% url 'USER:booking' %}"><center>Book Now</center></a></small>
+                            </div>
+                        </div>
+                    </div>
+                
+            </td>
+        </tr>
+    </table>
+</div>
+<style></style>
+{% endblock %}

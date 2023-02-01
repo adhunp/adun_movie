@@ -1,0 +1,64 @@
+{% extends 'towner_base.html' %}
+{% block title%}
+theaters
+{% endblock%}
+{% block name %}{{customer.tuname}}{% endblock %}
+
+{% block content %}
+
+{% if movie_details %}
+    <table style="width:100%">
+        <tr>
+            <th>id_no</th>
+            <th>Movie Name</th>
+            <th>Release Date</th>
+            <th>Screen</th>
+            <th>Showtime-AM</th>
+            <th>Showtime-PM</th>
+            <th>Price</th>
+            <th>Details</th>
+            <th>Images</th>
+            <th>Delete</th>
+            <th>Edit</th>
+            {% comment %} 
+            
+            {% endcomment %}
+            
+            
+        </tr>
+        {% for student in movie_details %}
+       
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{student.movie_name}}</td>
+            <td>{{student.release_date}}</td>
+            <td>{{student.movie_screen}}</td>
+            <td>{{student.time_am}}</td>
+            <td>{{student.time_pm}}</td>
+            <td>{{student.price}}</td>
+            <td>{{student.details}}</td>
+            <td><img src="{{student.picture.url}}" alt="" width="100%" height="150px"></td>
+            <td><a href="{% url 'towner:delmovies' student.id %}">Delete</a></td>
+            <td><a href="{% url 'towner:editmovie' student.id %}">Edit</a></td>
+            {% comment %}
+            {% endcomment %}
+
+        </tr>
+        {% endfor %}
+    </table>
+    <span>{{status}}</span>
+    {% else %}
+    <h1>no data</h1>
+    {% endif %}
+
+    <style>
+        table, th, td {
+                        border: 1px solid black;
+                        /* border-collapse: collapse; */
+                        /* height: 150px; */
+
+                      }
+    </style>
+
+{{error_message}}
+{% endblock %}
