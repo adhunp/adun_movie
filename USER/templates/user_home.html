@@ -40,25 +40,25 @@
 		<div class="wrapper d-flex">
 			<div class="sidebar">
 				<ul>
-					<li><a href="{% url 'HEADER:ahome' %}"><i class="fas fa-home"></i>Home</a></li>
-					<li><a href="{% url 'HEADER:theater' %}"></i>Theater</a></li>
+					<li><a href="{% url 'USER:ahome' %}"><i class="fas fa-home"></i>Home</a></li>
+					<li><a href="{% url 'USER:theater' %}"></i>Theater</a></li>
 					<li class="nav-item dropdown notification1">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Language
 						</a>
 						<ul class="dropdown-menu">
-							<li><a style="background:none;" class="dropdown-item" href="#">Malayalam</a></li>
-							<li><a style="background:none;" class="dropdown-item" href="#">Tamil</a></li>
-							<li><a style="background:none;" class="dropdown-item" href="#">Hindi</a></li>
-							<li><a  style="background:none;" class="dropdown-item" href="#">English</a></li>
+							<li><a style="background:none;" class="dropdown-item" href="{% url 'USER:getlanguage' 'malayalam' %}">Malayalam</a></li>
+							<li><a style="background:none;" class="dropdown-item" href="{% url 'USER:getlanguage' 'tamil' %}">Tamil</a></li>
+							<li><a style="background:none;" class="dropdown-item" href="{% url 'USER:getlanguage' 'hindi' %}">Hindi</a></li>
+							<li><a style="background:none;" class="dropdown-item" href="{% url 'USER:getlanguage' 'english' %}">English</a></li>
 						</ul>
 					</li>
-					<li class="notification2"><a href="#">Coming soon</a><span class="number2"></span></li>
+					<li class="notification2"><a href="{% url 'USER:up' %}">Coming soon</a><span class="number2"></span></li>
 					</li>
 					<li class="coming_ho"><a href="#"><img src="/static/images/up/avatar.jpg" class="coming_img"
 								alt="..."></a>
 						<div class="middle">
-							<a href=""><p class="text">View more</p></a>
+							<a href="{% url 'USER:up' %}"><p class="text">View more</p></a>
 						</div>
 					</li>
 					<!-- <li><a href="#"><i class="fas fa-signal"></i>Reports</a></li> -->
@@ -102,23 +102,22 @@
 								<img src="/static/images/s1.jpg" class="showtime" alt="...">
 
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">All</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'USER:ahome' %}">All</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Action</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'USER:getaction' 'action' %}">Action</a>
+								</li> 
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="{% url 'USER:getaction' 'comedy' %}">Comedy</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Comedy</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Mystery</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'USER:getaction' 'mystery' %}">Mystery</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</div>
-
 		</div>
 
 		<div class="films">

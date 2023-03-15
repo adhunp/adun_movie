@@ -106,13 +106,13 @@
 									<a class="nav-link active" aria-current="page" href="#">All</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="{% url 'towner:action' %}">Action</a>
+									<a class="nav-link active" id="action" aria-current="page" href="#">Action</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Comedy</a>
+									<a class="nav-link active" id="comedy" aria-current="page" href="#">Comedy</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Mystery</a>
+									<a class="nav-link active" id="mystery" aria-current="page" href="#">Mystery</a>
 								</li>
 							</ul>
 						</div>
@@ -244,6 +244,14 @@
 		</footer>
 
 	</div>
+
+<script>
+	 document.getElementById("action").onclick = function() {
+          document.getElementsByClassName("films").onclick = function() {
+			document.getElementsByClassName("films").style.display = "none";
+		  }
+        }
+</script>
 <style>
 		.coming_img {
 			width: 200px;

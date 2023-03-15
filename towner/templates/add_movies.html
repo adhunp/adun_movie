@@ -99,44 +99,72 @@ textarea{
 	{% csrf_token %}
     <ul class="form-style-1">
         <li><label>Movie Name</label>
-            <input type="text" name="m_name" class="field-long" placeholder="Movie Name">
+            <input type="text" name="m_name" id="movie_name" class="field-long" placeholder="Movie Name">
+			<span id=error1></span>
         </li>
         <li>
             <label>Release Date</label>
-            <input type="date" name="r_date" class="field-long">
+            <input type="date" name="r_date" id="date" class="field-long">
+			<span id=error2></span>
         </li>
         <li>
             <label>Screen</label>
-            <select name="screen" class="field-select">
+            <select name="screen" id="screen" class="field-select">
             <option value="2d">2D</option>
             <option value="3d">3D</option>
             <option value="4d">4D</option>
             </select>
         </li>
 
-        <li>
+        <!-- <li>
             <label>Showtime-AM</label>
             <input type="text" placeholder="Enter Show Time" name="time_am" class="field-long"  required>
-        </li>
+        </li> -->
 
-		<li>
+		<!-- <li>
             <label>Showtime-PM</label>
             <input type="text" placeholder="Enter Show Time" name="time_pm" class="field-long"  required>
-        </li>
+        </li> -->
 
-        <li>
+		<li>
+			<label>General</label>
+
+			<select name="gender" id="general">
+  				<option value="action">Action</option>
+  				<option value="comedy">Comedy</option>
+  				<option value="mystery">Mystery</option>
+			</select>
+
+		</li>
+
+		<li>
+				<label>Language</label>
+		
+					<select name="language" id="language">
+						  <option value="malayalam">Malayalam</option>
+						  <option value="tamil">Tamil</option>
+						  <option value="hindi">Hindi</option>
+						  <option value="english">English</option>
+					</select>
+					
+		
+		</li>
+			
+        <!-- <li>
             <label>Price</label>
-            <input type="number" placeholder="Enter your price" value="0" name="price" class="field-long" required>
-        </li>
+            <input type="number" placeholder="Enter your price" id="pri" value="0" name="price" class="field-long" required>
+        </li> -->
 
 		<li>
 			<label>Details</label>
-			<textarea name="add" class="address" placeholder="Movie other details"></textarea>
+			<textarea name="add" class="address" id="details" placeholder="Movie other details"></textarea>
+			<span id=error6></span>
 		</li>
 		
         <li>
 			<label>photo</section></label>
-            <input type="file" name="pic" >
+            <input type="file" name="pic" id="image">
+			<span id=error7></span>
 		</li>
 		</span>
         <!-- <li>
@@ -144,10 +172,70 @@ textarea{
             <textarea name="field5" id="field5" class="field-long field-textarea"></textarea>
         </li> -->
         <li>
-            <input type="submit" value="Submit">
+            <input type="submit" onclick="return validate()" value="Submit">
         </li>
     </ul>
+	{{status}}
+
 </form>
-{{error_message}}
+
+<script>
+
+function validate() {
+
+var movie = document.getElementById("movie_name")
+var Release = document.getElementById("date")
+var details = document.getElementById("details")
+// var image = document.getElementById("image")
+
+var error1 = document.getElementById("error1")
+var error2 = document.getElementById("error2")
+var error6 = document.getElementById("error6")
+var error7 = document.getElementById("error7")
+
+
+			if (movie.value == '') {
+							error1.innerHTML = "eneter movie name"
+							error1.style.color = 'Red'
+							return false
+						}
+			else {
+						error1.innerHTML = ""
+				}
+				
+
+			if (Release.value == '') {
+                error2.innerHTML = "input movie release date"
+                error2.style.color = 'Red'
+                return false
+            		}
+			else {
+              		error2.innerHTML = ""
+     			}
+			
+			
+			if (details.value == '') {
+                error6.innerHTML = "eneter movie details"
+                error6.style.color = 'Red'
+                return false
+            		}
+			else {
+              		error6.innerHTML = ""
+     			}
+
+			
+			if (image.value == '') {
+                error7.innerHTML = "input movie image here"
+                error7.style.color = 'Red'
+                return false
+            		}
+			else {
+              		error7.innerHTML = ""
+     			}
+
+
+			}
+
+</script>
 
 {% endblock %}

@@ -98,7 +98,8 @@ textarea{
 <form action="" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
     <ul class="form-style-1">
-        <li><label>Movie Name</label>
+        <li>
+			<label>Movie Name</label>
             <input type="text" name="m_name" value="{{movie_details.movie_name}}" class="field-long" placeholder="Movie Name">
         </li>
         <li>
@@ -114,7 +115,7 @@ textarea{
             </select>
         </li>
 
-        <li>
+        <!-- <li>
             <label>Showtime-AM</label>
             <input type="text" value="{{movie_details.time_am}}" placeholder="Enter Show Time" name="time_am" class="field-long"  required>
         </li>
@@ -122,23 +123,46 @@ textarea{
 		<li>
             <label>Showtime-PM</label>
             <input type="text" value="{{movie_details.time_pm}}" placeholder="Enter Show Time" name="time_pm" class="field-long"  required>
-        </li>
+        </li> -->
 
-        <li>
+		<li>
+			<label>General</label>
+
+			<select name="gender">
+  				<option value="action">Action</option>
+  				<option value="comedy">Comedy</option>
+  				<option value="mystery">Mystery</option>
+			</select>
+
+		<li>
+
+		<li>
+				<label>Language</label>
+		
+					<select name="language">
+						  <option value="malayalam">Malayalam</option>
+						  <option value="tamil">Tamil</option>
+						  <option value="hindi">Hindi</option>
+						  <option value="english">English</option>
+					</select>
+		
+		<li>
+
+        <!-- <li>
             <label>Price</label>
             <input type="number" placeholder="Enter your price" value="{{movie_details.price}}" name="price" class="field-long" required>
-        </li>
+        </li> -->
 
 		<li>
 			<label>Details</label>
 			<textarea name="add"  value="" class="address" placeholder="Movie other details">{{movie_details.details}}</textarea>
 		</li>
 		
-        <li>
+        <!-- <li>
 			<label>photo</section></label>
-            <input type="file" name="pic" >
-		</li>
-		</span>
+            <input type="file" value="{{movie_details.picture}}" name="pic" >
+			<input type="text" value="{{movie_details.picture}}" name="pic1" >
+		</li> -->
         <!-- <li>
             <label>Your Message <span class="required">*</span></label>
             <textarea name="field5" id="field5" class="field-long field-textarea"></textarea>

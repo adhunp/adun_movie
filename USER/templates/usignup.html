@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGNUP</title>
     <link rel="stylesheet" href="{% static 'css/usignup.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -24,7 +25,7 @@
     <h1>SHOW TIME</h1>
     <div class="title">Registration</div>
     <div class="content">
-      <form action="" method="POST">
+      <form action="" method="POST" enctype ="multipart/form-data">
         {% csrf_token %}
         <div class="user-details">
           <div class="input-box">
@@ -37,7 +38,8 @@
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" name="email"  required>
+            <input type="text" placeholder="Enter your email" id="uemail" name="email"  required>
+            <span id="user_msg"></span>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
@@ -80,9 +82,54 @@
         <div class="button">
           <input type="submit" value="Register">
         </div>
+        {{status}}
+
       </form>
     </div>
   </div>
+
+
+<script>
+    // #ajax format
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers:{
+                "x-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+            }
+            })
+            $('#uemail').change(function(){
+             var email = $('#uemail').val()
+            
+            $.ajax({
+                type:'POST',
+                url:"{% url 'USER:email_exit' %}",
+                data:{
+                     'email':email
+                },
+                success:function(response){
+                    console.log(response.status)
+                   if (response.status == true)
+                   {
+                    $('#user_msg').html('email exits')
+                    $('#user_msg').css('color','red')
+                   }
+                    else
+                    {
+                        $('#user_msg').html('')
+                        // $('#user_msg').css('color','green')
+
+
+                    }
+
+
+                   }
+                   })
+
+                })
+            })
+
+
+</script>
 
 </body>
 </html>

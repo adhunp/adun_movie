@@ -12,6 +12,7 @@ urlpatterns=[
     path('de_movies',views.de_movies,name='de_movies'),
     path('delm/<int:mid>',views.del_movie,name='delmovies'),
     path('editm/<int:mid>',views.edit_movies,name='editmovie'),
+    path('img_edit/<int:mid>',views.img_edit,name='img_edit'),
     path('ahome',views.ahome,name='ahome'),
     path('carter/<int:m_id>',views.carter,name='carter'),
     path('up',views.up,name='up'),
@@ -21,6 +22,6 @@ urlpatterns=[
     path('seats_name',views.seats_name,name='seats_name'),
     path('time_table',views.Time_table,name='time_table'),
     path('action',views.action,name='action'),
-    path('seatsrefrence',views.seatsrefrence,name='seatsrefrence'),
+    path('seatsrefrence/<int:sid>',views.seatsrefrence,name='seatsrefrence'),
 
 ]

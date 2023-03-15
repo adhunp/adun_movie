@@ -12,15 +12,22 @@ theaters
         <h2>{{movie.theater.taddress}}</h2>
         <h2>{{movie.theater.tphone}}</h2>
     </div>
+
     <div>
+        <h1>{{movie.movie_name}}</h1>
+
         <table class="booking">
-            <tr style="height:80px;">
-                <td><h1>{{movie.movie_name}}</h1></td>
-                <td><a href="{% url 'USER:seats' %}">10.15</a></td>
-                <td><a href="">2.00</a></td>
-                <td><a href="">6.00</a></td>
-                <td><a href="">9.45</a></td>        
-            </tr>
+            {% for time in table %}
+             <tr style="height:80px;">
+
+                <td>{{time.date.datees}}</td>
+                <!-- <td>{{time.theater.tname}}</a></td> -->
+                <td><a href="">{{time.screen.screen_name}}</td>
+                <td><a href="{% url 'USER:user_seats' time.screen.id time.id  %}">{{time.time_one}}</a></td>
+                <td><a href="{% url 'USER:user_seats' time.screen.id time.id %}">{{time.time_two}}</a></td>
+                <td><a href="">{{time.time_three}}</a></td>        
+             </tr>
+            {% endfor %}
         </table>
     </div>
 </div>

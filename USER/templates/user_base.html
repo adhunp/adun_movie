@@ -45,9 +45,9 @@
 		<div class="wrapper d-flex">
 			<div class="sidebar">
 				<ul>
-					<li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+					<li><a href="{% url 'USER:ahome' %}"><i class="fas fa-home"></i>Home</a></li>
 					<li><a href="#"></i>Theater</a></li>
-					<li class="nav-item dropdown notification1">
+					<!-- <li class="nav-item dropdown notification1">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 							aria-expanded="false">
 							Language
@@ -58,13 +58,13 @@
 							<li><a style="background:none;" class="dropdown-item" href="#">Hindi</a></li>
 							<li><a style="background:none;" class="dropdown-item" href="#">English</a></li>
 						</ul>
-					</li>
-					<li class="notification2"><a href="#">Coming soon</a><span class="number2"></span></li>
+					</li> -->
+					<li class="notification2"><a href="{% url 'USER:up' %}">Coming soon</a><span class="number2"></span></li>
 					</li>
 					<li class="coming_ho"><a href="#"><img src="/static/images/up/avatar.jpg" class="coming_img"
 								alt="..."></a>
 						<div class="middle">
-							<a href="">
+							<a href="{% url 'USER:up' %}">
 								<p class="text">View more</p>
 							</a>
 						</div>
@@ -108,7 +108,7 @@
 							aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+						<!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 							<ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
 								<img src="/static/images/s1.jpg" class="showtime" alt="...">
 
@@ -125,7 +125,7 @@
 									<a class="nav-link active" aria-current="page" href="#">Mystery</a>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 				</nav>
 			</div>

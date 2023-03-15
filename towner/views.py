@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from towner.models import Tdetails,Moviedetails,Theater_screen,SeatsName,time_table,Date,Seatdetails
+from towner.models import Tdetails,Moviedetails,Theater_screen,SeatsName,time_table,Date,Seatdetails,BookingDetails
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 
@@ -29,7 +29,7 @@ def csignup(request):
         tname = request.POST['tname']
         tscreen = request.POST['tscreen']
         tad = request.POST['add']
-        tprice = request.POST['tprice']
+        # tprice = request.POST['tprice']
         tuname = request.POST['tusername']
         temail = request.POST['temail']
         tphone =  request.POST['tnumber']
@@ -39,7 +39,7 @@ def csignup(request):
                         tname = tname,
                         tscreen = tscreen,
                         taddress = tad,
-                        tprice = tprice,
+                        # tprice = tprice,
                         tuname = tuname,
                         temail = temail,
                         tphone = tphone,
@@ -58,24 +58,31 @@ def addmovies(request):
         movie_name = request.POST['m_name'] # inputname 
         r_date = request.POST['r_date']
         screen = request.POST['screen']
-        time_am = request.POST['time_am']
-        time_pm = request.POST['time_pm']
-        price = request.POST['price']
+        # time_am = request.POST['time_am']
+        # time_pm = request.POST['time_pm']
+        general = request.POST['gender']
+        language = request.POST['language']
+        # price = request.POST['price']
         details = request.POST['add']
         image = request.FILES['pic']
         t_id =request.session['c_id']
         obj =Moviedetails(movie_name = movie_name,
                          release_date = r_date,
                          movie_screen = screen,
-                         time_am = time_am,
-                         time_pm = time_pm,
-                         price = price,
+                        #  time_am = time_am,
+                        #  time_pm = time_pm,
+                         general = general,
+                         language = language,
+                        #  price = price,
                          details = details,
                          picture = image,
                          theater_id =t_id,
                     )
         obj.save()
-    return render (request,'add_movies.html',{'customer':towner})
+        msg = "Movie added succesfuly"
+    else:
+        msg=""
+    return render (request,'add_movies.html',{'customer':towner,'status':msg})
 
 
 
@@ -129,15 +136,28 @@ def edit_movies(request,mid):
         movie.movie_name = request.POST['m_name']
         movie.release_date = request.POST['r_date']
         movie.movie_screen = request.POST['screen']
-        movie.time_am = request.POST['time_am']
-        movie.time_pm = request.POST['time_pm']
-        movie.price = request.POST['price']
+        # movie.time_am = request.POST['time_am']
+        # movie.time_pm = request.POST['time_pm']
+        movie.general = request.POST['gender']
+        movie.language = request.POST['language']
+        # movie.price = request.POST['price']
         movie.details = request.POST['add']
-        movie.picture = request.FILES['pic']
+        # movie.picture = request.FILES['pic']
         movie.save()
         msg='movie edited succesfully'
 
     return render (request,'towner_edit.html',{'movie_details':movie,'status':msg,'customer':towner})
+
+def img_edit(request,mid):
+    towner= Tdetails.objects.get(id=request.session['c_id'])
+    movie = Moviedetails.objects.get(id=mid)
+    msg=''
+    if request.method=='POST':
+        movie.picture = request.FILES['pic']
+        movie.save()
+        msg='movie edited succesfully'
+
+    return render (request,'image_edit.html',{'movie_details':movie,'status':msg,'customer':towner})
 
 def logout(request):
     del request.session['c_id']
@@ -147,6 +167,8 @@ def logout(request):
 def ahome(request):
     towner= Tdetails.objects.get(id=request.session['c_id'])
     details=Moviedetails.objects.all()
+
+    Time_table=time_table.objects.all()
     presentday = datetime.now()
     tomorrow = presentday + timedelta(1)
     dayafter = presentday + timedelta(2)
@@ -166,9 +188,7 @@ def ahome(request):
     Dayft.datees=Dayafterdate
     Dayft.save()
   
-    
-    
-    return render (request,'movie_home.html',{'det':details,'customer':towner.tuname})
+    return render (request,'movie_home.html',{'det':details,'customer':towner.tuname,'gender':Time_table})
     
 def carter(request,m_id):
     details=Moviedetails.objects.get(id=m_id)
@@ -194,11 +214,12 @@ def seats(request, sid,tid):
     return render (request,'towner_seats.html',{'customer':towner, 'seatsObj':seatsObj,'seatno':ss,'seatt':seatsdetails })
 
 def booking(request,table_id):
-    time_table1= time_table.objects.filter(movie_id=table_id)    
+    time_table1= time_table.objects.filter(movie_id=table_id)  
+      
     towner= Tdetails.objects.get(id=request.session['c_id'])
-    moviedatail = Moviedetails.objects.get(id=table_id)
-    print(moviedatail.movie_name)
-    return render (request,'towner_booking.html',{'movie':moviedatail,'table':time_table1,'theater':towner})
+    moviedetail = Moviedetails.objects.get(id=table_id)
+    print(moviedetail.movie_name)
+    return render (request,'towner_booking.html',{'movie':moviedetail,'table':time_table1,'customer':towner})
 
 
 def screen(request):
@@ -253,14 +274,14 @@ def Time_table(request):
         time_one = request.POST['time_one']
         time_two = request.POST['time_two']
         time_three = request.POST['time_three']
-        gender = request.POST['gender']
-        language = request.POST['language']
+        # gender = request.POST['gender']
+        # language = request.POST['language']
         t_id =request.session['c_id']
         screens = request.POST['screen_name']
-        movie = request.POST['mmid']
+        movies = request.POST['mmid']
         scid=int(screens)
         print(type(scid))
-        mid=int(movie)
+        mid=int(movies)
         oid=int(dates)
         omp=Date.objects.get(id=oid)
         print(type(scid))
@@ -274,8 +295,8 @@ def Time_table(request):
                          time_one = time_one,
                          time_two = time_two,
                          time_three = time_three,
-                         gender = gender,
-                         language = language,
+                        #  gender = gender,
+                        #  language = language,
                          screen_id = obb.id,
                          theater_id =t_id,
                          movie_id = obp.id,
@@ -290,13 +311,37 @@ def action(request):
     towner= Tdetails.objects.get(id=request.session['c_id'])
     return render (request,'t_action.html',{'customer':towner})
 
-def seatsrefrence(request):
-    towner= Tdetails.objects.get(id=request.session['c_id'])
-    return render (request,'seatsrefrence.html',{'customer':towner})
-    # def get_movies(request):
-    #     t_id=request.POST['t_id']
-    #     movies= Moviedetails.objects.filter(theater_id=t_id)
-    #     # mdata=
-    #     screen= Theater_screen.objects.filter(theater_id=t_id)
 
-    #     return JsonResponse()
+
+def seatsrefrence(request, sid):
+    towner= Tdetails.objects.get(id=request.session['c_id'])
+    seatsdetails=SeatsName.objects.all()
+    Time_table= time_table.objects.all()
+
+
+    seatsObj = Theater_screen.objects.get(theater_id=request.session['c_id'],id=sid)
+    ss=int(seatsObj.seats)
+    print(seatsObj.seats)
+
+    if request.method== 'POST'  :   
+        noofseats = request.POST['count']
+        seats = request.POST['seat']
+        amount = request.POST['price']
+        timetable=request.session['Time_table']
+        # price=int(amount)
+        # print(type(price))
+        # mid=int(price)
+        # print(type(price))
+        # obb=BookingDetails.objects.get(id=mid)
+        # print(obb)
+        obj = BookingDetails(
+                         noofseats = noofseats,
+                         seats = seats,
+                         rupes = amount,
+                         timetable = timetable,
+
+                    )
+        obj.save()
+
+
+    return render (request,'seatsrefrence.html',{'customer':towner, 'seatsObj':seatsObj,'seatno':ss,'seatt':seatsdetails,'Time_table':Time_table })

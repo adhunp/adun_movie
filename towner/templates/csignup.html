@@ -8,23 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIGNUP</title>
   <link rel="stylesheet" href="{% static 'css/csignup.css' %}">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <!DOCTYPE html>
-  <!-- Created By CodingLab - www.codinglabweb.com -->
-  <html lang="en" dir="ltr">
 
-  <head>
-    <meta charset="UTF-8">
-    <!---<title> Responsive Registration Form | CodingLab </title>--->
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
 
   <body>
     <div class="container">
-      <h1>SHOW TIME</h1>
+      <h2 style="text-align: right;"><a href="{% url 'towner:clogin' %}" style="text-decoration: none;">LOGIN</a></h2>
+
+      <h1>SHOW TIME</h1> 
       <div class="title">Registration</div>
       <div class="content">
         <form action="" method="POST">
@@ -32,11 +25,13 @@
           <div class="user-details">
             <div class="input-box">
               <span class="details">Theaterowner Name</span>
-              <input type="text" placeholder="Enter your name" name="townername" required>
+              <input type="text" placeholder="Enter your name" name="townername"id="towner" required>
+              <span id=error1></span>
             </div>
             <div class="input-box">
               <span class="details">Theater Names</span>
-              <input type="text" placeholder="Enter Movies username" name="tname" required>
+              <input type="text" placeholder="Enter Movies username" name="tname" id="tname" required>
+              <span id=error2></span>
             </div>
             <div class="input-box">
               <span class="details">Screen</span>
@@ -48,32 +43,38 @@
             </div>
             <div class="input-box">
               <span class="details">Address</span>
-              <textarea name="add" class="address" ></textarea>
+              <textarea name="add" class="address" id="address" ></textarea>
+              <span id=error3></span>
             <!-- <input type="text" name="ta"> -->
             </div>
-            <div class="input-box">
+            <!-- <div class="input-box">
               <span class="details">Ticket Price</span>
               <input type="text" placeholder="Enter Movies username" name="tprice" required>
-            </div>
+            </div> -->
             <div class="input-box">
               <span class="details">Username</span>
-              <input type="text" placeholder="Enter your username" name="tusername" required>
+              <input type="text" placeholder="Enter your username" name="tusername" id="username" required>
+              <span id=error4></span>
             </div>
             <div class="input-box">
               <span class="details">Email</span>
-              <input type="text" placeholder="Enter your email" name="temail" required>
+              <input type="text" placeholder="Enter your email" name="temail" id="email" required>
+              <span id=error5></span>
             </div>
             <div class="input-box">
               <span class="details">Phone Number</span>
-              <input type="text" placeholder="Enter your number" name="tnumber" required>
+              <input type="tel" placeholder="Enter your number" name="tnumber" id="number" required>
+              <span id=error6></span>
             </div>
             <div class="input-box">
               <span class="details">Password</span>
-              <input type="text" placeholder="Enter your password" name="tpassword" required>
+              <input type="text" placeholder="Enter your password" id="password" name="tpassword" required>
+              <span id=error7></span>
             </div>
             <div class="input-box">
               <span class="details">Confirm Password</span>
-              <input type="text" placeholder="Confirm your password" required>
+              <input type="text" placeholder="Confirm your password" id="confpsw" required>
+              <span id=error8></span>
             </div>
             <div class="gender-details">
               <input type="radio" name="tgender" id="dot-1">
@@ -83,22 +84,23 @@
               <div class="category">
                 <label for="dot-1">
                 <span class="dot one"></span>
-                <span class="gender">Male</span>
+                <span class="gender" id="male">Male</span>
               </label>
               <label for="dot-2">
                 <span class="dot two"></span>
-                <span  class="gender">Female</span>
+                <span  class="gender" id="female">Female</span>
               </label>
               <label for="dot-3">
                 <span class="dot three"></span>
-                <span class="gender">Prefer not to say</span>
+                <span class="gender" id="not_say">Prefer not to say</span>
               </label>
+              <span id=error8></span>
               </div>
             </div>
           </div>
 
           <div class="button">
-            <input type="submit" value="Register">
+            <input type="submit" onclick="return validate()" value="Register">
           </div>
 
           <!-- <div class="input-box">
@@ -108,6 +110,112 @@
         </form>
       </div>
     </div>
+
+
+    <script>
+            function validate(){
+
+              var towner=document.getElementById("towner")
+              var tname=document.getElementById("tname")
+              var address=document.getElementById("address")
+              var username=document.getElementById("username")
+              var email=document.getElementById("email")
+              var phnumber=document.getElementById("number")
+              var password=document.getElementById("password")
+              var confirm=document.getElementById("confpsw")
+              var male=document.getElementById("male")
+              var female=document.getElementById("female")
+              var not_say=document.getElementById("not_say")
+             
+              var error1 = document.getElementById("error1")
+              var error2 = document.getElementById("error2")
+              var error3 = document.getElementById("error3")
+              var error4 = document.getElementById("error4")
+              var error5 = document.getElementById("error5")
+              var error6 = document.getElementById("error6")
+              var error7 = document.getElementById("error7")
+              var error8 = document.getElementById("error8")
+
+              var name_pattern = /^[a-z A-Z]+$/;
+              var email_pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+              var phone_pattern =/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+
+            if (towner.value == '') {
+                error1.innerHTML = "eneter your name"
+                error1.style.color = 'Red'
+                return false
+            }
+            else {
+                error1.innerHTML = ""
+            }
+
+            if (towner.value.match(name_pattern)) {
+                // alert('invalid')
+                // document.getElementById("name").innerHTML='name pattern incorrect'
+                error1.innerHTML = ""
+                error1.style.color = "green"
+
+            }
+            else {
+                error1.innerHTML = "name pattern incorrect"
+                error1.style.color = "red"
+            }
+
+
+
+            if (email.value == '') {
+                error5.innerHTML = "eneter your email"
+                error5.style.color = 'Red'
+                return false
+            }
+            else {
+                error5.innerHTML = ""
+            }
+            if (email.value.match(email_pattern)) {
+                error5.innerHTML = ""
+                error5.style.color = ""
+            }
+            else {
+                error5.innerHTML = "mail pattern incorrect"
+                error5.style.color = "red"
+                return false
+            }
+
+
+
+            if (phnumber.value == '') {
+                error6.innerHTML = "eneter your phnumber"
+                error6.style.color = 'Red'
+                return false
+            }
+            else {
+                
+                error6.innerHTML = ""
+            }
+
+            if (phnumber.value.match(phone_pattern)) {
+                error6.innerHTML = ""
+                error5.style.color = ""
+            }
+            else{
+                error6.innerHTML = "number pattern incorrect"
+                error6.style.color = "red"
+                return false
+            }
+
+
+            if (male.checked == false && female.checked == false && not_say.checked == false) {
+                error8.innerHTML = "select anyoption"
+                error8.style.color = 'Red'
+                return false
+            }
+            else {
+                s_gender.innerHTML = ""
+            }
+
+
+            }
+    </script>
 
   </body>
 

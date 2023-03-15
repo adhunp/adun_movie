@@ -1,4 +1,4 @@
-{% extends 'user_base.html' %}
+{% extends 'towner_base.html' %}
 {% block title %}
 theaters
 {% endblock%}
@@ -6,11 +6,13 @@ theaters
 {% block name %}{{customer.tuname}}{% endblock %}
 
 {% block content %}
+
+
 <div class="container">
     <div>
-        <h1>{{theater.tname}}</h1>
-        <h2>{{theater.taddress}}</h2>
-        <h2>{{theater.tphone}}</h2>
+        <h1>{{customer.tname}}</h1>
+        <h2>{{customer.taddress}}</h2>
+        <h2>{{customer.tphone}}</h2>
     </div>
 
     <div>
@@ -24,7 +26,7 @@ theaters
                 <!-- <td>{{time.theater.tname}}</a></td> -->
                 <td><a href="">{{time.screen.screen_name}}</td>
                 <td><a href="{% url 'towner:seats' time.screen.id time.theater.id %}">{{time.time_one}}</a></td>
-                <td><a href="">{{time.time_two}}</a></td>
+                <td><a href="{% url 'towner:seatsrefrence' time.screen.id %}">{{time.time_two}}</a></td>
                 <td><a href="">{{time.time_three}}</a></td>        
             </tr>
             {% endfor %}

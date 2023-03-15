@@ -46,9 +46,9 @@
 		<div class="wrapper d-flex">
 			<div class="sidebar">
 				<ul>
-					<li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-					<li><a href="#"></i>Theater</a></li>
-					<li class="nav-item dropdown notification1">
+					<li><a href="{% url 'HEADER:ahome' %}"><i class="fas fa-home"></i>Home</a></li>
+					<li><a href="{% url 'HEADER:theater' %}"></i>Theater</a></li>
+					<!-- <li class="nav-item dropdown notification1">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Language
 						</a>
@@ -58,13 +58,12 @@
 							<li><a style="background:none;" class="dropdown-item" href="#">Hindi</a></li>
 							<li><a  style="background:none;" class="dropdown-item" href="#">English</a></li>
 						</ul>
+					</li> -->
+					<li class="notification2"><a href="{% url 'HEADER:up' %}">Coming soon</a><span class="number2"></span></li>
 					</li>
-					<li class="notification2"><a href="#">Coming soon</a><span class="number2"></span></li>
-					</li>
-					<li class="coming_ho"><a href="#"><img src="/static/images/up/avatar.jpg" class="coming_img"
-								alt="..."></a>
+					<li class="coming_ho"><a href="#"><img src="/static/images/up/avatar.jpg" class="coming_img" alt="..."></a>
 						<div class="middle">
-							<a href=""><p class="text">View more</p></a>
+							<a href="{% url 'HEADER:up' %}"><p class="text">View more</p></a>
 						</div>
 					</li>
 					<!-- <li><a href="#"><i class="fas fa-signal"></i>Reports</a></li> -->
@@ -107,7 +106,7 @@
 							<ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
 								<img src="/static/images/s1.jpg" class="showtime" alt="...">
 
-								<li class="nav-item">
+								<!-- <li class="nav-item">
 									<a class="nav-link active" aria-current="page" href="#">All</a>
 								</li>
 								<li class="nav-item">
@@ -118,7 +117,7 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link active" aria-current="page" href="#">Mystery</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 					</div>

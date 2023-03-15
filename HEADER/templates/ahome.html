@@ -53,12 +53,12 @@
 							<li><a  style="background:none;" class="dropdown-item" href="#">English</a></li>
 						</ul>
 					</li>
-					<li class="notification2"><a href="#">Coming soon</a><span class="number2"></span></li>
+					<li class="notification2"><a href="{% url 'HEADER:up' %}">Coming soon</a><span class="number2"></span></li>
 					</li>
 					<li class="coming_ho"><a href="#"><img src="/static/images/up/avatar.jpg" class="coming_img"
 								alt="..."></a>
 						<div class="middle">
-							<a href=""><p class="text">View more</p></a>
+							<a href="{% url 'HEADER:up' %}"><p class="text">View more</p></a>
 						</div>
 					</li>
 					<!-- <li><a href="#"><i class="fas fa-signal"></i>Reports</a></li> -->
@@ -103,16 +103,16 @@
 								<img src="/static/images/s1.jpg" class="showtime" alt="...">
 
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">All</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'HEADER:ahome' %}">All</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Action</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'HEADER:haction' 'action' %}">Action</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Comedy</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'HEADER:haction' 'comedy' %}">Comedy</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Mystery</a>
+									<a class="nav-link active" aria-current="page" href="{% url 'HEADER:haction' 'mystery' %}">Mystery</a>
 								</li>
 							</ul>
 						</div>
